@@ -4,7 +4,6 @@ const reducer = () => {};
 
 const Calculator = () => {
   const [total, setTotal] = useState("");
-  const [prevTotal, setPrevTotal] = useState("");
   const [disable, setDisable] = useState(false);
 
   const onClick = (e) => {
@@ -22,14 +21,11 @@ const Calculator = () => {
   const evaluate = () => {
     setTotal(eval(total).toString());
     console.log("total", total);
-    setPrevTotal(eval(total).toString());
-    setTotal("");
   };
 
   return (
     <>
       <div className="container">
-        <div className="prev-val">{prevTotal}</div>
         <input type="text" value={total} readOnly={true} />
         <div className="keys">
           <button name="clear" onClick={() => setTotal("")}>
