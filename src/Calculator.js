@@ -3,13 +3,9 @@ import React, { useState } from "react";
 const reducer = () => {};
 
 const Calculator = () => {
-  // const [state, dispatch] = useReducer(reducer, {curVal, prevVal, operand})
   const [total, setTotal] = useState("");
   const [prevTotal, setPrevTotal] = useState("");
   const [disable, setDisable] = useState(false);
-
-  // const operations = total.match(/\d+.?\d+?/g);
-  // console.log("curval", operations);
 
   const onClick = (e) => {
     try {
@@ -17,18 +13,6 @@ const Calculator = () => {
     } catch (error) {
       setTotal(error);
     }
-    // if (total.includes(".") && total !== "") {
-    //   setDisable(true);
-    // }
-
-    // if (
-    //   total.includes("+") ||
-    //   total.includes("-") ||
-    //   total.includes("*") ||
-    //   total.includes("/")
-    // ) {
-    //   setDisable(false);
-    // }
   };
 
   const backspace = (e) => {
