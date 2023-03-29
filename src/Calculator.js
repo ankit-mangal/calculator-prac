@@ -8,24 +8,31 @@ const Calculator = () => {
   const [prevTotal, setPrevTotal] = useState("");
   const [disable, setDisable] = useState(false);
 
-  const operations = total.match(/\d+.?\d+?/g);
-  console.log("curval", operations);
+  // const operations = total.match(/\d+.?\d+?/g);
+  // console.log("curval", operations);
 
   const onClick = (e) => {
-    // if (total.includes(".") || total !== "") {
+    try {
+      setTotal(total.concat(e.target.name));
+    } catch (error) {
+      setTotal(error);
+    }
+    // if (total.includes(".") && total !== "") {
     //   setDisable(true);
     // }
-    if (operations && operations[operations.length - 1].includes(".")) {
-      console.log(operations[operations.length - 1].includes("."));
-      setDisable(true);
-    }
-    if (operations && operations[operations.length - 1].includes(".")) {
-      if (e.target.name !== ".") {
-        setTotal(total.concat(e.target.name));
-      }
-    } else {
-      setTotal(total.concat(e.target.name));
-    }
+
+    // if (
+    //   total.includes("+") ||
+    //   total.includes("-") ||
+    //   total.includes("*") ||
+    //   total.includes("/")
+    // ) {
+    //   setDisable(false);
+    // }
+  };
+
+  const backspace = (e) => {
+    setTotal(total.slice(0, total.length - 1));
   };
 
   const evaluate = () => {
@@ -44,7 +51,7 @@ const Calculator = () => {
           <button name="clear" onClick={() => setTotal("")}>
             Clear
           </button>
-          <button name="C" onClick={onClick}>
+          <button name="C" onClick={backspace}>
             C
           </button>
           <button name="/" onClick={onClick}>
@@ -86,11 +93,8 @@ const Calculator = () => {
           <button name="+" onClick={onClick}>
             +
           </button>
-          <button name="0" onClick={onClick}>
+          <button name="0" onClick={onClick} disabled={disable}>
             0
-          </button>
-          <button name="." onClick={onClick} disabled={disable}>
-            .
           </button>
           <button name="=" onClick={evaluate}>
             =
